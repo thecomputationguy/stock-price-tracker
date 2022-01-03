@@ -1,0 +1,8 @@
+{
+    "tickers" : ["AAPL", "CHV.F", "GM", "WMT", "GOOG", "TSLA"],
+    "start_date" : "2021-01-01",
+    "end_date" : "2021-12-31",
+    "source" : "yahoo",
+    "type" : "historical", 
+    "latest_closing_date" : 1
+  }
