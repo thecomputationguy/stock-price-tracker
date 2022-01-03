@@ -72,3 +72,5 @@ def analyze_data(raw_data, closing_price_data):
             file = open('analysis/correlation.txt', 'w')
             print(closing_price_data.corr(), file=file)
             file.close()
+
+    closing_price_data.to_pickle('analysis/time_series_closing_data.pkl')
