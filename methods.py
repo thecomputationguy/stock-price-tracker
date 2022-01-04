@@ -72,7 +72,7 @@ def plot_data(data, tickers):
         plt.savefig('analysis/' + ticker + '.jpg')
 
     
-def analyze_data(raw_data, closing_price_data):
+def generate_statistics(raw_data, closing_price_data):
     if os.path.exists('analysis/statistics.txt'):
         file = open('analysis/statistics.txt', 'w')
         print(raw_data.describe(), file=file)
