@@ -21,6 +21,6 @@ if __name__ == '__main__':
 
     # Perform some simple statistical and correlation analysis and plotting
     print("Analyzing and Plotting data...")
-    methods.analyze_data(raw_data, closing_price_data)
+    methods.generate_statistics(raw_data, closing_price_data)
     methods.plot_data(closing_price_data, tickers)
     print('Done.')
