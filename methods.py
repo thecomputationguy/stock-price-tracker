@@ -39,14 +39,8 @@ def clean_data(raw_data, start_date, end_date, latest_closing_date):
 
     return closing_price
 
-
-def plot_data(data, tickers):
-    for ticker in tickers:
-        ticker_series = data.loc[:, ticker]
-        short_term_rolling_average = ticker_series.rolling(window=7).mean()
-        long_term_rolling_average = ticker_series.rolling(window=30).mean()
-        
-        kf = KalmanFilter(
+def kalman_smoothing(series_data):
+    kf = KalmanFilter(
                 transition_matrices=[1],
                 observation_matrices=[1],
                 initial_state_mean=0,
@@ -54,9 +48,17 @@ def plot_data(data, tickers):
                 observation_covariance=1,
                 transition_covariance=0.01
             )
+    state_means, _ = kf.filter(series_data)
 
-        state_means, _ = kf.filter(ticker_series)
+    return state_means
+    
 
+def plot_data(data, tickers):
+    for ticker in tickers:
+        ticker_series = data.loc[:, ticker]
+        short_term_rolling_average = ticker_series.rolling(window=7).mean()
+        long_term_rolling_average = ticker_series.rolling(window=30).mean()        
+        state_means = kalman_smoothing(ticker_series)
 
         fig, ax = plt.subplots(figsize=(16,9))
 
